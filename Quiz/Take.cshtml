@@ -1,0 +1,51 @@
+﻿@page
+@model QuizTest.Pages.Quiz.TakeModel
+@{
+	ViewData["Title"] = "Take Quiz - " + Model.Quiz.Title; 
+}
+
+<h2>@Model.Quiz.Title</h2>
+
+<div id="timer" style="font-size: 24px; color: red";>
+	Time Remaining: <span id="timeRemaining">00:00</span>
+</div>
+
+<form method="post">
+	@foreach (var question in Model.Questions.OrderBy(_ => Guid.NewGuid()).ToList())
+	{
+		<div>
+			<p>@question.QuestionText</p>
+			@foreach (var answer in question.answers.OrderBy(_ =>Guid.NewGuid()).ToList())
+			{
+				<div>
+					<input type="radio" name="Question_@question.QuestionId" value="@answer.AnswerId" />
+					<label>@answer.AnswerText</label>
+				</div>
+			}
+		</div>
+	}
+	
+	<button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<script>
+	var timeLimit = 30;
+	var timeRemaining = timeLimit;
+
+	function updateTimer()
+	{
+		var minutes = Math.floor(timeRemaining / 60);
+		var seconds = timeRemaining % 60;
+		seconds = seconds < 10 ? '0' + seconds : seconds;
+		document.getElementById("timeRemaining").innerText = minutes + ":" + seconds;
+		timeRemaining--;
+
+		if(timeRemaining < 0)
+		{
+			document.forms[0].submit();
+		}
+	}
+
+	setInterval(updateTimer, 1000);
+</script>
+	

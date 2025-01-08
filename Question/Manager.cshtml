@@ -1,0 +1,34 @@
+﻿@page
+@model QuizTest.Pages.Question.ManagerModel
+@{
+    ViewData["Title"] = "Question Manager";
+}
+
+<h1>Question Manager</h1>
+
+<a asp-page="/Question/CreateQuestion" class="btn btn-success mb-3">Create</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Text</th>
+            <th>Quiz</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model.Questions)
+        {
+            <tr>
+                <td>@question.QuestionId</td>
+                <td>@question.QuestionText</td>
+                <td>@question.QuizId</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@question.QuestionId">Edit</a> |
+                    <a asp-page="Delete" asp-route-id="@question.QuestionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

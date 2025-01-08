@@ -1,0 +1,28 @@
+﻿@page
+@model QuizTest.Pages.Question.EditModel
+@{
+    ViewData["Title"] = "Edit a question";
+}
+
+<h1>Edit a question</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Text">Question Text</label>
+        <input id="Text" name="Question.QuestionText" class="form-control" value="@Model.Question.QuestionText" />
+    </div>
+
+	<div class="form-group">
+		<label for="quizID">Select Quiz</label>
+		<select id="quizID" class="form-control" asp-for="Question.QuizId" required>
+			<option value="">-- Select a Quiz --</option>
+			@foreach (var quiz in Model.Quizzes)
+			{
+				<option value="@quiz.QuizId">@quiz.Title</option>
+			}
+		</select>
+	</div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="/Question/Manager" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,29 @@
+﻿@page
+@model QuizTest.Pages.Quiz.ScoreHistoryModel
+@{
+    ViewData["Title"] = "Score History";
+}
+
+<h1>Score History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Quiz</th>
+            <th>Score</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var score in Model.Scores)
+        {
+            <tr>
+                <td>@score.ScoreId</td>
+                <td>@score.Quiz.Title</td>
+                <td>@score.Score</td>
+                <td>@score.timestamp</td>
+            </tr>
+        }
+    </tbody>
+</table>

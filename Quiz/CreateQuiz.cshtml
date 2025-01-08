@@ -1,0 +1,21 @@
+﻿@page
+@model QuizTest.Pages.Quiz.CreateQuizModel
+@{
+	ViewData["Title"] = "Create A New Quiz";
+}
+
+<h2>Create a new quiz</h2>
+
+<form method="post">
+	<div class="form_group">
+		<label for="QuizTitle">Quiz Title</label>
+		<input type="text" class="form_control" id="QuizTitle" name="Title" required />
+	</div>
+
+	<div class="fore_group">
+		<label for="QuizDescription">Quiz Description</label>
+		<textarea class="form_control" id="QuizDescription" name="Description" required></textarea>
+	</div>
+
+	<button type="submit" class="btn btn-success">Create Quiz</button>
+</form>

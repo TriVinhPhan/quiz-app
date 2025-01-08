@@ -1,0 +1,11 @@
+﻿@page
+@model QuizTest.Pages.Quiz.ResultModel
+@{
+	ViewData["Title"] = "Result";
+}
+
+<h1>Result</h1>
+
+<p>You have <strong>@Model.Score</strong> marks!</p>
+
+<a asp-page="Index" class="btn btn-primary">Return to home</a>

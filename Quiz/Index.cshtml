@@ -1,0 +1,34 @@
+﻿@page
+@model QuizTest.Pages.Quiz.IndexModel
+@{
+    ViewData["Title"] = "Quiz List";
+}
+
+<h1>Quiz List</h1>
+
+<a asp-page="/Quiz/CreateQuiz" class="btn btn-success mb-3">Create</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quiz in Model.Quizzes)
+        {
+            <tr>
+                <td>@quiz.QuizId</td>
+                <td>@quiz.Title</td>
+                <td>@quiz.Description</td>
+                <td>
+                    <a asp-page="/Quiz/Take" asp-route-id="@quiz.QuizId" class="btn btn-primary">Take</a>
+                    <a asp-page="/Quiz/Edit" asp-route-id="@quiz.QuizId" class="btn btn-warning">Edit</a>
+                    <a asp-page="/Quiz/Delete" asp-route-id="@quiz.QuizId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
